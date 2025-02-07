@@ -24,13 +24,17 @@ client.on('guildMemberAdd', member => {
             .replace("{server.name}", member.guild.name)
             .replace("{server.memberCount}", member.guild.memberCount))
         .setDescription(process.env.EMBED_DESCRIPTION
-            .replace("{user.ping}", `@<${member.user.id}>`)
+            .replace("{user.ping}", `<@${member.user.id}>`)
             .replace("{user.id}", member.user.id)
             .replace("{user.displayName}", member.user.displayName)
             .replace("{user.name}", member.user.username)
             .replace("{server.name}", member.guild.name)
             .replace("{server.memberCount}", member.guild.memberCount))
         .setFooter({ text: process.env.EMBED_FOOTER, iconURL: process.env.EMBED_FOOTER_URL });
+
+    if (process.env.EMBED_FOOTER_TIMESTAMP == "true") {
+        welcomeEmbed.setTimestamp();
+    }
 
     const channel = client.channels.cache.get(process.env.WELCOME_CHANNEL_ID);
     if (channel) {
