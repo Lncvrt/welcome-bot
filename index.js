@@ -17,7 +17,7 @@ client.on('guildMemberAdd', member => {
     const welcomeEmbed = new EmbedBuilder()
         .setColor(process.env.EMBED_COLOR)
         .setTitle(process.env.EMBED_TITLE
-            .replace("{user.ping}", `@<${member.user.id}>`)
+            .replace("{user.ping}", `<@${member.user.id}>`)
             .replace("{user.id}", member.user.id)
             .replace("{user.displayName}", member.user.displayName)
             .replace("{user.name}", member.user.username)
