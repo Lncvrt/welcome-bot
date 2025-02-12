@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
+const { Client, GatewayIntentBits, EmbedBuilder, Events } = require('discord.js');
 
 const client = new Client({
     intents: [
@@ -9,11 +9,11 @@ const client = new Client({
     ]
 });
 
-client.once('ready', () => {
+client.once(Events.ClientReady, () => {
     console.log(`The bot is now online, using ${client.user.tag}.`);
 });
 
-client.on('guildMemberAdd', member => {
+client.on(Events.GuildMemberAdd, member => {
     const welcomeEmbed = new EmbedBuilder()
         .setColor(process.env.EMBED_COLOR)
         .setTitle(process.env.EMBED_TITLE
